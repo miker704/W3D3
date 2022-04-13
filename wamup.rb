@@ -104,6 +104,7 @@ end
 # p fib_recur(4)
 # p fib_recur(5)
 
+# debugger
 def binary_search(array, target)
     first = 0
     last = array.length - 1
@@ -111,9 +112,11 @@ def binary_search(array, target)
     return nil if first > last
     return middle if array[middle] == target
     if array[middle] > target 
-        return first + binary_search(array[first..middle],target)
+        return  binary_search(array[first...middle],target)
     elsif array[middle] < target
-        return middle + binary_search(array[middle..last],target)
+        result= binary_search(array[middle+1..last],target)
+        return nil if result == nil
+        return middle+1 + result
     end
 end
 
