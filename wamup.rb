@@ -1,4 +1,4 @@
-require 'byebug'
+# require 'byebug'
 # recursive version 
 def range_recur(start,finish)
     return [] if finish <= start
@@ -41,7 +41,7 @@ def exponentiation(b, expo)
 end
 
 # p exponentiation(2, 5)
-debugger
+# debugger
 def exponentiation_2(b, expo)
     return 1 if expo == 0
     return b if expo == 1
@@ -53,4 +53,23 @@ def exponentiation_2(b, expo)
     end
 end
 
-p exponentiation_2(2, 5)
+# p exponentiation_2(2, 5)
+
+class Array
+
+    def deep_dup
+        return self[0] if !self.is_a?(Array)
+        arr=[]
+        self.each do |ele|
+            if !ele.is_a?(Array)
+                arr<<ele
+            else
+                arr<<ele.deep_dup
+            end
+        end
+        return arr
+    end
+
+end
+
+print [1,[2],[3,[4]]].deep_dup
