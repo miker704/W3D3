@@ -1,4 +1,4 @@
-
+require 'byebug'
 # recursive version 
 def range_recur(start,finish)
     return [] if finish <= start
@@ -41,16 +41,16 @@ def exponentiation(b, expo)
 end
 
 # p exponentiation(2, 5)
-
+debugger
 def exponentiation_2(b, expo)
     return 1 if expo == 0
     return b if expo == 1
 
     if expo.even?
-        return b * exponentiation_2(b, expo / 2) ** 2
+        return exponentiation_2(b, expo / 2)**2
     else
         return b * (exponentiation_2(b, (expo - 1) / 2)) ** 2
     end
 end
 
-p exponentiation_2(2, 4)
+p exponentiation_2(2, 5)
