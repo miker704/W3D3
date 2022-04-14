@@ -1,4 +1,4 @@
-# require 'byebug'
+require 'byebug'
 # recursive version 
 def range_recur(start,finish)
     return [] if finish <= start
@@ -120,10 +120,41 @@ def binary_search(array, target)
     end
 end
 
-p binary_search([1, 2, 3], 1) # => 0
-p binary_search([2, 3, 4, 5], 3) # => 1
-p binary_search([2, 4, 6, 8, 10], 6) # => 2
-p binary_search([1, 3, 4, 5, 9], 5) # => 3
-p binary_search([1, 2, 3, 4, 5, 6], 6) # => 5
-p binary_search([1, 2, 3, 4, 5, 6], 0) # => nil
-p binary_search([1, 2, 3, 4, 5, 7], 6) # => nil
+# p binary_search([1, 2, 3], 1) # => 0
+# p binary_search([2, 3, 4, 5], 3) # => 1
+# p binary_search([2, 4, 6, 8, 10], 6) # => 2
+# p binary_search([1, 3, 4, 5, 9], 5) # => 3
+# p binary_search([1, 2, 3, 4, 5, 6], 6) # => 5
+# p binary_search([1, 2, 3, 4, 5, 6], 0) # => nil
+# p binary_search([1, 2, 3, 4, 5, 7], 6) # => nil
+
+def merge_sort(arr)
+    return arr if arr.length <= 1
+
+    middle = arr.length / 2
+    # p "first #{arr[0...middle]}"
+    # p "last #{arr[middle..-1]}"
+    first = merge_sort(arr[0...middle])
+    last = merge_sort(arr[middle..-1])
+
+    merge(first, last)
+    
+end
+
+def merge(arr_1, arr_2)
+    arr = []
+
+    while arr_1.length > 0 && arr_2.length > 0
+        
+        if arr_1[0] < arr_2[0]
+            arr << arr_1.shift
+        else
+            arr << arr_2.shift
+        end
+
+    end
+    arr + arr_1 + arr_2
+end
+# p merge([1,3,5,7], [2,6,8])
+p merge_sort([1,9,5,7,4,7,2])
+p merge_sort([3,7,5,9,3,5,6,7,3,5,7,6,4,5])
